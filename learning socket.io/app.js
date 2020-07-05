@@ -1,6 +1,7 @@
-var app = require('express')(); // importing and intializing express to app
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var express = require('express'),
+    app = express(), // importing and intializing express to app
+    http = require('http').createServer(app),
+    io = require('socket.io')(http);
 
 // http helps listening to ur ports 
 //The http. createServer() method creates an HTTP Server object. 
@@ -11,6 +12,11 @@ console.log(http);
 
 // socket.io
 // relies on engine.io
+app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/public"));
+// dirname refers to the directory name to the script was running 
+console.log(__dirname);
+
 
 app.set("view engine", "ejs") //process for setting default engine // ejs=embedded javascript
 app.get('/', (req, res) => {

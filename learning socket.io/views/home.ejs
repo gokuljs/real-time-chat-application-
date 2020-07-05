@@ -1,55 +1,13 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.IO chat</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font: 13px Helvetica, Arial;
-        }
-        
-        form {
-            background: #000;
-            padding: 3px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        form input {
-            border: 0;
-            padding: 10px;
-            width: 90%;
-            margin-right: 0.5%;
-        }
-        
-        form button {
-            width: 9%;
-            background: rgb(130, 224, 255);
-            border: none;
-            padding: 10px;
-        }
-        
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #messages li {
-            padding: 5px 10px;
-        }
-        
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+    <script src="/js/socket.js"></script>
+
 </head>
 
 <body>
@@ -60,24 +18,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- importing jquery to ur project  -->
-    <script>
-        $(function() {
-            var socket = io();
-            //That’s all it takes to load the socket.io-client, which exposes an io global (and the endpoint GET /socket.io/socket.io.js), and then connect
-            // Notice that I’m not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.
-            $('form').submit(function(e) {
-                e.preventDefault(); // prevents page reloading
-                socket.emit('chat message', $('#m').val()); // it takes the value from the input and passing it to the chat message 
-                // socket.emit('chat message', $('#m').val());
 
-                $('#m').val('');
-                return false;
-            });
-            socket.on('chat message', function(msg) {
-                $('#messages').append($('<li>').text(msg));
-            });
-        });
-    </script>
 </body>
 
 </html>
