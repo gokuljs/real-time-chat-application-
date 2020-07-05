@@ -25,6 +25,15 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
 
     console.log('a user connected');
+    // emitting events 
+    // after emitting events then come the part broad casting 
+    // chat message written inside form is written here 
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+        io.emit('chat message', msg); // bradcasting message 
+
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
